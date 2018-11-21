@@ -33,35 +33,39 @@ class CalcTests(unittest.TestCase):
         self.method = CalcApp()
 
     def test_add(self):
-        result = self.method.add(4, 2)
-        self.assertEqual(6, result)
+        result = self.method.add(1, 3)
+        self.assertEqual(4, result)
+
+    def test_add_fail(self):
+            result = self.method.add(1, 3)
+            self.assertEqual(7, result)
 
     def test_add_invalid_value(self):
-        self.assertRaises(ValueError, self.method.add, "four", "five")
+        self.assertRaises(ValueError, self.method.add, "one", "two")
 
     def test_multiply(self):
         result = self.method.multiply(5, 3)
         self.assertEqual(15, result)
 
     def test_multiply_invalid_value(self):
-        self.assertRaises(ValueError, self.method.multiply, "four", "five")
+        self.assertRaises(ValueError, self.method.multiply, "two", "one")
+
+    def test_sub_invalid_value(self):
+        self.assertRaises(ValueError, self.method.sub, "one", "two")
 
     def test_sub(self):
         result = self.method.sub(6, 4)
         self.assertEqual(2, result)
 
-    def test_sub_invalid_value(self):
-        self.assertRaises(ValueError, self.method.sub, "four", "five")
+    def test_div_invalid_value(self):
+        self.assertRaises(ValueError, self.method.div, "four", "six")
 
     def test_div(self):
-        result = self.method.div(5, 1)
-        self.assertEqual(5, result)
-
-    def test_div_invalid_value(self):
-        self.assertRaises(ValueError, self.method.div, "five", "four")
+        result = self.method.div(6, 2)
+        self.assertEqual(3, result)
 
     def test_div_zero(self):
-        self.assertRaises(ZeroDivisionError, self.method.div, 5, 0)
+        self.assertRaises(ZeroDivisionError, self.method.div, 3, 0)
 
 
 if __name__ == '__main__':
