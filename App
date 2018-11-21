@@ -1,0 +1,68 @@
+data_types = (int, float, complex)
+import unittest
+
+
+class CalcApp:
+
+    @staticmethod
+    def validate(a, b):
+        if not isinstance(a, data_types) and not isinstance(b, data_types):
+            raise ValueError
+
+    def add(self, a, b):
+        self.validate(a, b)
+        return a + b
+
+    def sub(self, a, b):
+        self.validate(a, b)
+        return a - b
+
+    def multiply(self, a, b):
+        self.validate(a, b)
+        return a * b
+
+    def div(self, a, b):
+        self.validate(a, b)
+        return a / b
+
+
+
+class CalcTests(unittest.TestCase):
+
+    def setUp(self):
+        self.method = CalcApp()
+
+    def test_add(self):
+        result = self.method.add(4, 2)
+        self.assertEqual(6, result)
+
+    def test_add_invalid_value(self):
+        self.assertRaises(ValueError, self.method.add, "four", "five")
+
+    def test_multiply(self):
+        result = self.method.multiply(5, 3)
+        self.assertEqual(15, result)
+
+    def test_multiply_invalid_value(self):
+        self.assertRaises(ValueError, self.method.multiply, "four", "five")
+
+    def test_sub(self):
+        result = self.method.sub(6, 4)
+        self.assertEqual(2, result)
+
+    def test_sub_invalid_value(self):
+        self.assertRaises(ValueError, self.method.sub, "four", "five")
+
+    def test_div(self):
+        result = self.method.div(5, 1)
+        self.assertEqual(5, result)
+
+    def test_div_invalid_value(self):
+        self.assertRaises(ValueError, self.method.div, "five", "four")
+
+    def test_div_zero(self):
+        self.assertRaises(ZeroDivisionError, self.method.div, 5, 0)
+
+
+if __name__ == '__main__':
+    unittest.main()
